@@ -1,112 +1,76 @@
+using System.Collections;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit.Interactables; // pour XRGrabInteractable
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class BallHandler : MonoBehaviour
 {
-    [Header("Hands Transforms")]
-    public Transform leftHandTransform;
-    public Transform rightHandTransform;
+    public XRBaseInteractor leftHandInteractor;
+    public XRBaseInteractor rightHandInteractor;
 
-    [Header("Input Actions")]
-    public InputActionReference triggerReleaseLeft;
-    public InputActionReference triggerReleaseRight;
     public InputActionReference buttonB;
     public InputActionReference buttonY;
 
-    [Header("Recorder")]
-    public Recorder recorder;  // nous permet de glisser notre  RecorderObject
-
-    // Composants internes
     private Rigidbody rb;
     private XRGrabInteractable grabInteractable;
-    private bool isHeld    = false;
-    private bool isThrown  = false;
-    private float timer    = 0f;
-    private float returnDelay = 15f;
 
-    private void Awake()
+    private System.Action<InputAction.CallbackContext> bCallback;
+    private System.Action<InputAction.CallbackContext> yCallback;
+
+    void Awake()
     {
-        rb               = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
         grabInteractable = GetComponent<XRGrabInteractable>();
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
-        triggerReleaseLeft.action.performed  += OnTriggerReleased;
-        triggerReleaseRight.action.performed += OnTriggerReleased;
-        buttonB.action.performed            += OnButtonPressed;
-        buttonY.action.performed            += OnButtonPressed;
+        bCallback = ctx => ReturnToHand(rightHandInteractor);
+        yCallback = ctx => ReturnToHand(leftHandInteractor);
+
+        buttonB.action.performed += bCallback;
+        buttonY.action.performed += yCallback;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
-        triggerReleaseLeft.action.performed  -= OnTriggerReleased;
-        triggerReleaseRight.action.performed -= OnTriggerReleased;
-        buttonB.action.performed            -= OnButtonPressed;
-        buttonY.action.performed            -= OnButtonPressed;
+        buttonB.action.performed -= bCallback;
+        buttonY.action.performed -= yCallback;
     }
 
-    private void Update()
+    void Start()
     {
-        if (isThrown)
-        {
-            timer += Time.deltaTime;
-            if (timer >= returnDelay)
-                ReturnToHand();
-        }
+        StartCoroutine(DelayedPlacement());
     }
 
-    private void OnTriggerReleased(InputAction.CallbackContext ctx)
+    private IEnumerator DelayedPlacement()
     {
-        if (!isHeld) return;
-
-        isThrown = true;
-        timer    = 0f;
-
-        // Enregistre le lancer
-        if (recorder != null)
-            recorder.Record();
+        yield return new WaitForSeconds(1f);
+        ReturnToHand(rightHandInteractor);
     }
 
-    private void OnButtonPressed(InputAction.CallbackContext ctx)
+    public void ReturnToHand(XRBaseInteractor handInteractor)
     {
-        if (isThrown)
-            ReturnToHand();
-    }
+        Debug.Log("Retour de la balle vers la main");
 
-    private void ReturnToHand()
-    {
-        isThrown = false;
-        timer    = 0f;
-
-        // Choix de la main selon l'interactor
-        Transform targetHand = rightHandTransform;
-        if (grabInteractable.interactorsSelecting.Count > 0)
-        {
-            var intor = grabInteractable.interactorsSelecting[0];
-            if (intor.transform.name.Contains("Left"))
-                targetHand = leftHandTransform;
-        }
-
-        rb.linearVelocity        = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        transform.position = targetHand.position;
-        transform.rotation = targetHand.rotation;
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Hand"))
+        // Positionner la balle manuellement dans la main
+        transform.position = handInteractor.transform.position;
+        transform.rotation = handInteractor.transform.rotation;
+
+        // Libérer l'interactor précédent s'il existe
+        var previousInteractor = grabInteractable.interactorsSelecting.FirstOrDefault();
+        if (previousInteractor != null)
         {
-            isHeld   = true;
-            isThrown = false;
+            grabInteractable.interactionManager.SelectExit(previousInteractor as IXRSelectInteractor, grabInteractable);
         }
-    }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Hand"))
-            isHeld = false;
+        // Forcer le grab avec l’interactor cible
+        grabInteractable.interactionManager.SelectEnter(handInteractor as IXRSelectInteractor, grabInteractable);
     }
 }

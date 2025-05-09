@@ -11,7 +11,7 @@ public class Recorder : MonoBehaviour
     public Transform target;
 
     private string csvPath;
-
+// le fichier csv doit etre deployer dans le pc et non dans le casque
     private void Awake()
     {
         csvPath = Path.Combine(Application.persistentDataPath, "results.csv");
