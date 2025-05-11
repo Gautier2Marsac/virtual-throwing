@@ -893,6 +893,57 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &785562286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 785562288}
+  - component: {fileID: 785562287}
+  m_Layer: 0
+  m_Name: VibrationToggle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &785562287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785562286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd79617e3019e60459b28960514565b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonX: {fileID: -8150113156486663883, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  buttonA: {fileID: 452898601018193290, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  leftInteractor: {fileID: 1385023578}
+  rightInteractor: {fileID: 1868122565}
+  amplitude: 1
+  duration: 0.9
+  repeatInterval: 0.15
+--- !u!4 &785562288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 785562286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4201427, y: 0.12894997, z: 3.8890793}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &800728310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,6 +1468,7 @@ GameObject:
   - component: {fileID: 1242201085}
   - component: {fileID: 1242201084}
   - component: {fileID: 1242201086}
+  - component: {fileID: 1242201087}
   m_Layer: 0
   m_Name: ObjetLancer
   m_TagString: Untagged
@@ -1738,6 +1790,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTransform: {fileID: 1417688948}
+--- !u!114 &1242201087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1242201075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71792a69424e3c54b8568e04a170a1d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1385023576 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 202364687, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
@@ -2534,7 +2598,7 @@ GameObject:
   - component: {fileID: 1931035316}
   m_Layer: 0
   m_Name: Sol
-  m_TagString: Untagged
+  m_TagString: Sol
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2648,3 +2712,4 @@ SceneRoots:
   - {fileID: 351199071}
   - {fileID: 1007004476}
   - {fileID: 962860813}
+  - {fileID: 785562288}

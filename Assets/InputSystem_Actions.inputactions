@@ -990,6 +990,62 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "XRI LeftHand Interaction",
+            "id": "4113973a-f229-4b25-954d-963be4f7b5fe",
+            "actions": [
+                {
+                    "name": "VibrationToggleLeft",
+                    "type": "Button",
+                    "id": "072ce384-1910-4b43-a188-fe7814543d5b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dd20e299-4838-486f-bf62-ce6919ddf28e",
+                    "path": "*/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VibrationToggleLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "XRI RightHand Interaction",
+            "id": "5e98a3cc-e72d-43b9-9ced-82226de723f9",
+            "actions": [
+                {
+                    "name": "VibrationToggleRight",
+                    "type": "Button",
+                    "id": "455b34bc-b098-48e5-bd1c-c9e3a0cdbe3d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "83fe03f4-b025-42c6-b9a7-c62035c06fd7",
+                    "path": "<XRController>{RightHand}/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "VibrationToggleRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

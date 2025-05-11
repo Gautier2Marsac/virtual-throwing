@@ -69,6 +69,18 @@ providers = {
 objectSelectors = {
 }
 recentSearches = [
+	"Inp"
+	"InputSystem_Actions"
+	"InputSystem_Actions/XRI RightHand Intera"
+	"InputSystem_Actions/XRI RightHand Interaction/VibrationToggleRight"
+	"InputSystem_Actions/XRI RightHand Interaction/VibrationToggleRight "
+	"InputSystem_Actions/XRI RightHand Interaction/ButtonA."
+	"XRI Left Interaction/ButtonX"
+	"XRI Left Interaction/ButtonX (Input Action"
+	"XRI Left Interaction/ButtonX (Input Action Reference)"
+	"XRI Left Interactio"
+	"Bu"
+	"buttonx"
 	"button"
 	""
 	"bu"
