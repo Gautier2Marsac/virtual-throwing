@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class LancerRecorder : MonoBehaviour
 {
-    // référence vers la cible fixe (à glisser dans l’inspecteur)
+    // je dois pas oublir de glisser la reference dans l'inspecteur 
     public Transform targetTransform;
 
     private XRGrabInteractable grab;
@@ -18,10 +18,10 @@ public class LancerRecorder : MonoBehaviour
         grab = GetComponent<XRGrabInteractable>();
         rb = GetComponent<Rigidbody>();
 
-        // chemin vers le fichier CSV qui va stocker les données
+        // afin d'afficher le chemin vers le fichier CSV qui va stocker les données
         filePath = Path.Combine(Application.persistentDataPath, "Lancers.csv");
 
-        // si le fichier n’existe pas encore, on écrit la première ligne (les noms de colonnes)
+        // si le fichier n'existe pas -> je le recrée en remplissant les colonnes 
         if (!File.Exists(filePath))
         {
             string header = "RealTime,TimeSinceStart,MainUsed," +
@@ -35,17 +35,17 @@ public class LancerRecorder : MonoBehaviour
 
     void OnEnable()
     {
-        // on s’abonne à l’événement qui déclenche lorsqu’on relâche la balle
+        //declenchement de l'envent qu'oon on lache la balle 
         grab.selectExited.AddListener(LogThrow);
     }
 
     void OnDisable()
     {
-        // on se désabonne proprement si l’objet est désactivé
+        // pour se desabonner si l'objet et lacher 
         grab.selectExited.RemoveListener(LogThrow);
     }
 
-    // cette fonction s’exécute à chaque fois qu’on relâche la balle
+    //a chaque fois ou on lance le ballon elle se lance 
     private void LogThrow(SelectExitEventArgs args)
     {
         if (rb == null || targetTransform == null)
@@ -56,27 +56,27 @@ public class LancerRecorder : MonoBehaviour
 
         var culture = CultureInfo.InvariantCulture;
 
-        // heure actuelle au moment du lancer (utile pour synchroniser les tests)
+        // heure actuelle au moment du lancer elle nous sera utile pour synchro les tests
         string realTime = System.DateTime.Now.ToString("HH:mm:ss");
 
-        // durée depuis le début de la scène (Time.time commence à 0 au lancement)
+        //la duree depuis le lancer de la scene en cliquant sur play
         float timeSinceStart = Time.time;
 
-        // détection de la main utilisée (gauche ou droite)
+        // detection de la main utilise 
         string hand = args.interactorObject.transform.name.Contains("Left") ? "Left" : "Right";
 
-        // on récupère la position de départ et la vitesse de la balle au moment du lâcher
+        // pos et vitesse de la balle lors ce qu'on le lache (xyz)
         Vector3 velocity = rb.linearVelocity;
         Vector3 posStart = transform.position;
         Vector3 posTarget = targetTransform.position;
 
-        // distance entre la main et la cible (pure géométrie, pas le vrai impact)
+        // distance entre la main et la cible c qu'une geometrie elle n'a pas d'impacte 
         float distanceLancer = Vector3.Distance(posStart, posTarget);
 
-        // distance fixe entre la zone de lancer standard et la cible
+        // distance fixe entre la zone de lancer standard et la cible à modifier vu que j'ai ajoute deux autres cibles pour que le csv soit coherent 
         float distanceFixe = Vector3.Distance(new Vector3(1f, 0.5f, -30f), new Vector3(1f, 0.5f, 4f));
 
-        // ligne à écrire dans le fichier CSV, on n’ajoute pas encore distanceImpact ici
+        //csv
         string line =
             $"{realTime}," +
             $"{timeSinceStart.ToString("F2", culture)}," +
@@ -96,7 +96,7 @@ public class LancerRecorder : MonoBehaviour
         File.AppendAllText(filePath, line + "\n");
         Debug.Log("Lancer enregistré dans le fichier CSV.");
 
-        // on envoie la position de départ à ImpactLogger pour qu’il enregistre la distance réelle au sol
+        // envoyer la pos de depart a ImpactLogger pour qu’il enregistre la distance R au sol
         GetComponent<ImpactLogger>()?.SetStartPosition(posStart);
     }
 }

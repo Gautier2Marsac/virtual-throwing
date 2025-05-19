@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ImpactLogger : MonoBehaviour
 {
-    private Vector3 startPosition; // position de départ envoyée par le lancer
+    private Vector3 startPosition; // pos de depart envoye par le lancer
     private bool hasLogged = false;
     private string filePath;
 
@@ -13,7 +13,7 @@ public class ImpactLogger : MonoBehaviour
         filePath = Path.Combine(Application.persistentDataPath, "Lancers.csv");
     }
 
-    // appelée depuis LancerRecorder juste après le lancer
+    // appelee depuis LancerRecorder  apres le lancer
     public void SetStartPosition(Vector3 pos)
     {
         startPosition = pos;
@@ -22,7 +22,7 @@ public class ImpactLogger : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // on veut capturer seulement le premier impact avec le sol
+        // que le premier impact avec le sol vu que j'ai configuré le rebondissement de la balle pour etre realiste 
         if (hasLogged) return;
         if (!collision.gameObject.CompareTag("Sol")) return;
 
@@ -39,16 +39,16 @@ public class ImpactLogger : MonoBehaviour
             return;
         }
 
-        // modification de la dernière ligne
+        //modif derniere ligne
         var culture = CultureInfo.InvariantCulture;
         string lastLine = lines[lines.Length - 1];
 
-        // si la ligne contient déjà la distance d’impact, on évite de la doubler
+        // pour ne pas doubler la distance d'inpact si elle existe 
         if (lastLine.Contains("DistanceImpact")) return;
 
         lastLine += "," + distanceImpact.ToString("F2", culture);
 
-        // réécriture complète du fichier
+        //reecriture complete de la data
         lines[lines.Length - 1] = lastLine;
         File.WriteAllLines(filePath, lines);
 

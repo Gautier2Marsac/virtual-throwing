@@ -63,14 +63,14 @@ public class BallHandler : MonoBehaviour
         transform.position = handInteractor.transform.position;
         transform.rotation = handInteractor.transform.rotation;
 
-        // Libérer l'interactor précédent s'il existe
+        // libere l'interactor precedent  s'il existe
         var previousInteractor = grabInteractable.interactorsSelecting.FirstOrDefault();
         if (previousInteractor != null)
         {
             grabInteractable.interactionManager.SelectExit(previousInteractor as IXRSelectInteractor, grabInteractable);
         }
 
-        // Forcer le grab avec l’interactor cible
+        // Forcer le grab avec l'interaactor cible 
         grabInteractable.interactionManager.SelectEnter(handInteractor as IXRSelectInteractor, grabInteractable);
     }
 }

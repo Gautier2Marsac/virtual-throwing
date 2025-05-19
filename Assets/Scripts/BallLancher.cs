@@ -1,3 +1,4 @@
+// le script suivant n'est q'un test avec le clavier car je n'avais pas  acces au casque lors ce que je travaillais hors salle 
 using UnityEngine;
 
 public class BallLauncher : MonoBehaviour
@@ -21,11 +22,11 @@ public class BallLauncher : MonoBehaviour
 
     void LaunchBall()
     {
-        // On remet la vitesse à zéro pour éviter d'accumuler les forces
+        //remettre la vitesse a 0 pour eviter l accumul des forces 
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
-        // Appliquer une force vers l'avant (Z)
+        // force vers l avant 
         rb.AddForce(transform.forward * force, ForceMode.Impulse);
     }
 }
