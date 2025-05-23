@@ -21,7 +21,7 @@ This project investigates how haptic feedback — specifically mass and vibratio
 
 ## Data Collection
 
-- Participants: 17 total
+- Participants: 20 total
 - Protocol:
   - Each participant completed 8 experimental conditions at three distances (4 m, 7 m, 12 m)
   - 24 labeled throws per participant were selected (3 per condition per distance)
