@@ -10,10 +10,19 @@ Here’s the virtual throwing setup in Unity:
 *User’s perspective holding the virtual ball using Oculus Quest controller.*
 
 
-![Live experiment: VR throwing task with haptic bracelet and Unity scene (IMT Atlantique, 2025)](assets/demo_throwing_real_setup.png)
+![Live experiment: VR throwing task with haptic bracelet and Unity scene (IMT Atlantique, 2025)](images/demo_throwing_real_setup.png)
 
 [▶️ Watch the 15s experiment video on Google Drive](https://drive.google.com/drive/folders/1azJ6gl1GO33FbOFV-vRY1kKtFGCWoRXl?usp=share_link)
 
+
+**Research Project — PRONTO @ IMT Atlantique**  
+*Team members: Achraf Essaleh, Gautier Tandeau de Marsac, Marc Duboc*
+
+This repository presents a group research project.  
+**My main roles:**  
+- Reading and synthesizing research articles to understand AR, haptics, and distance perception  
+- Designing and building the complete Unity experiment scene from scratch  
+- Running the data collection, preprocessing, and all statistical analyses  
 
 ## Objective
 
