@@ -19,6 +19,7 @@ Here’s the virtual throwing setup in Unity:
 
 This project investigates how haptic feedback — specifically mass and vibration — can improve distance perception during virtual throwing tasks in augmented reality (AR). The goal is to determine whether tactile cues help users better estimate egocentric distances, which are often underestimated in AR environments.
 
+
 ## Experimental Setup
 
 - Hardware: Oculus Quest 2 headset and controllers
@@ -102,7 +103,6 @@ These graphs helped identify which combinations of mass and vibration led to imp
 │   ├── research_article_pronto.pdf
 │   └── pronto_oral_presentation.pdf
 ├── README.md
-
 
 
 ### Supplementary Documents
