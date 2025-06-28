@@ -127,6 +127,6 @@ You can find all project deliverables and related resources in the [`docs/`](doc
 ## Notes
 
 - The Unity scene is functional and ready for experimentation
-- Python scripts are documented and reusable
-- All statistical steps are automated and reproducible
+- Python scripts are documented 
+- All statistical steps are automated 
 - Designed as part of the PRONTO project at IMT Atlantique (2025)
