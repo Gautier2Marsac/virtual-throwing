@@ -17,6 +17,7 @@ Here’s the virtual throwing setup in Unity:
 
 **Research Project — PRONTO @ IMT Atlantique**  
 *Team members: Achraf Essaleh, Gautier Tandeau de Marsac, Marc Duboc*
+**Supervisor: Etienne Peillard**
 
 This repository presents a group research project.  
 **My main roles:**  
