@@ -23,8 +23,8 @@ Here’s the virtual throwing setup in Unity:
 This repository presents a group research project.  
 **My main roles:**  
 - Reading and synthesizing research articles to understand AR, haptics, and distance perception  
-- Designing and building the complete Unity experiment scene from scratch  
-- Running the data collection, preprocessing, and all statistical analyses  
+- Designing and implementing virtual throwing experiments
+- Writing a research paper
 
 ## Objective
 
